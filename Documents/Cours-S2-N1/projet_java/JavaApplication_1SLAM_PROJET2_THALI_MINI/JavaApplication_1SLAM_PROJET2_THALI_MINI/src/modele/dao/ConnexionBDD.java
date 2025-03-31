@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  * Singleton de connexion à la BDD
- *
+ *test commit
  * @author nb
  * @version 2023
  */
@@ -40,8 +40,9 @@ public class ConnexionBDD {
             cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/Thali?serverTimezone=Europe/Paris", "thali_util", "secret");
             cnx.setAutoCommit(true);
             Logger.getLogger(ConnexionBDD.class.getName()).log(Level.INFO, "Connexion réussie à la BDD : "+cnx.getCatalog());
+           
         }
         return cnx;
     }
-
+    
 }
