@@ -26,7 +26,7 @@ public class TestMiniExcursion {
         me.ajouterEtape(new Etape(5, "promenade sur une petite crique", 15));
         me.ajouterEtape(new Etape(6, "visite du jardin exotique", 45));
         me.ajouterEtape(new Etape(7, "traversée retour",  30));
-        System.out.println(me.toString());
+        System.out.println(me.toStringEtat());
         
         System.out.println("\nTest n°3 : instanciation mini excursion payante");
         MiniExcursionPayante mep = new MiniExcursionPayante("E02", "Randonnée pédestre au \"Cap des vents\"", 35, 25.0f);
@@ -38,7 +38,7 @@ public class TestMiniExcursion {
         mep.ajouterEtape(new Etape(3, "Pique-nique", 60));
         mep.ajouterEtape(new Etape(4, "Randonnée : retour du cap par la lande", 120 ));
         mep.ajouterEtape(new Etape(5, "Trajet retour en car", 45));
-        System.out.println(mep.toString());
+        System.out.println(mep.toStringEtat());
      }
     
 }
