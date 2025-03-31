@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import modele.metier.Etape;
 import modele.metier.MiniExcursion;
 import modele.metier.MiniExcursionPayante;
@@ -54,7 +53,13 @@ public class DaoMiniExcursion {
         }
         return lesExcursionsTrouvees;
     } 
- // Méthode permettant de récupérer une MiniExcursion à partir de son code
+/**
+ * Récupère une MiniExcursion à partir de son code unique.
+ *
+ * @param codeExcursion Le code de l'excursion à rechercher.
+ * @return Une instance de MiniExcursion si elle est trouvée, sinon null.
+ * @throws SQLException En cas d'erreur lors de l'exécution de la requête SQL.
+ */
 public static MiniExcursion getOneById(String codeExcursion) throws SQLException {
     // Initialisation de l'objet MiniExcursion qui contiendra le résultat
     MiniExcursion miniexcurtionTrouvee = null;
@@ -85,6 +90,7 @@ public static MiniExcursion getOneById(String codeExcursion) throws SQLException
     // Retourne l'excursion trouvée (ou null si aucune excursion ne correspond au code donné)
     return miniexcurtionTrouvee; 
 }
+
 }
 
 
