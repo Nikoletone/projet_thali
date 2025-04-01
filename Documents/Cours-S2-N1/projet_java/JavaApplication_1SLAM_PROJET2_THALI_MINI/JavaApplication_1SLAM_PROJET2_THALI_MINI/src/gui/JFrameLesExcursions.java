@@ -229,6 +229,7 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
 
         jLabelDureeTotaleCourante.setText("courante");
 
+        jButtonCreation.setBackground(new java.awt.Color(255, 0, 0));
         jButtonCreation.setText("Creation");
         jButtonCreation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +237,7 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
             }
         });
 
+        jButtonSupprimer.setBackground(new java.awt.Color(255, 51, 51));
         jButtonSupprimer.setText("Supprimer");
         jButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,8 +245,10 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
             }
         });
 
+        jButtonModification.setBackground(new java.awt.Color(255, 51, 51));
         jButtonModification.setText("Modification");
 
+        jButtonLecture.setBackground(new java.awt.Color(255, 51, 51));
         jButtonLecture.setText("Lecture");
         jButtonLecture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
