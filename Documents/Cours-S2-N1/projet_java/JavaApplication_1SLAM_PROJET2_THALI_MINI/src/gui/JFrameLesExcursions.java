@@ -2,9 +2,12 @@ package gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modele.dao.DaoMiniExcursion;
 import modele.metier.Etape;
 import modele.metier.MiniExcursion;
 
@@ -96,24 +99,35 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
         Object[] rowData = new Object[jTableEtapes.getColumnModel().getColumnCount()];
         int sommeDurees = 0; // somme des durées d'une excursion
                 
-        // Pour chaque étape de l'excursion
-        for (Etape uneEtape : uneExcursion.getLesEtapes()) {
-            // Remplir le tableau d'objets représentant une ligne de la table avec les données de l'étape
-            rowData[0] = String.valueOf(uneEtape.getNumEtape());      // n° de l'étape dans la première colonne
-            rowData[1] = uneEtape.getDescription();                   // description de l'étape dans la deuxième colonne
-            int mn = uneEtape.getDureePrevue(); 
-            sommeDurees += mn; // ajout minutes
+        if(uneExcursion != null){
+            for (Etape uneEtape : uneExcursion.getLesEtapes()) {
+                // Remplir le tableau d'objets représentant une ligne de la table avec les données de l'étape
+                rowData[0] = String.valueOf(uneEtape.getNumEtape());      // n° de l'étape dans la première colonne
+                rowData[1] = uneEtape.getDescription();                   // description de l'étape dans la deuxième colonne
+                int mn = uneEtape.getDureePrevue(); 
+                sommeDurees += mn; // ajout minutes
 
-            // durée prévue dans la troisième colonne, formattée en heures:minutes:secondes
-            rowData[2] = String.format("%1$02dh%2$02dmn", (mn / 60), (mn - (mn / 60) * 60));
-            // Ajouter la ligne au modèle
-            modeleJTableEtapes.addRow(rowData);
+                // durée prévue dans la troisième colonne, formattée en heures:minutes:secondes
+                rowData[2] = String.format("%1$02dh%2$02dmn", (mn / 60), (mn - (mn / 60) * 60));
+                // Ajouter la ligne au modèle
+                modeleJTableEtapes.addRow(rowData);
+            }
         }
-        
         // Affichage de la durée totale d'une excursion
         jLabelDureeTotaleCourante.setText(String.format("%1$02dh%2$02dmn", (sommeDurees / 60), (sommeDurees - (sommeDurees / 60) * 60))); 
         
     }
+   public void rechargerExcursions() {
+        try {
+            ArrayList<MiniExcursion> excursions = DaoMiniExcursion.getAll();
+            modeleJComboExcursions.removeAllElements();
+            for (MiniExcursion ex : excursions) {
+                modeleJComboExcursions.addElement(ex);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erreur lors du rechargement des excursions : " + ex.getMessage());
+        }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,7 +243,7 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
 
         jLabelDureeTotaleCourante.setText("courante");
 
-        jButtonCreation.setBackground(new java.awt.Color(255, 0, 0));
+        jButtonCreation.setBackground(new java.awt.Color(153, 153, 255));
         jButtonCreation.setText("Creation");
         jButtonCreation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +251,7 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
             }
         });
 
-        jButtonSupprimer.setBackground(new java.awt.Color(255, 51, 51));
+        jButtonSupprimer.setBackground(new java.awt.Color(153, 153, 255));
         jButtonSupprimer.setText("Supprimer");
         jButtonSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,11 +259,11 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
             }
         });
 
-        jButtonModification.setBackground(new java.awt.Color(255, 51, 51));
+        jButtonModification.setBackground(new java.awt.Color(153, 153, 255));
         jButtonModification.setText("Modification");
 
-        jButtonLecture.setBackground(new java.awt.Color(255, 51, 51));
-        jButtonLecture.setText("Lecture");
+        jButtonLecture.setBackground(new java.awt.Color(153, 153, 255));
+        jButtonLecture.setText("Visualiser");
         jButtonLecture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLectureActionPerformed(evt);
@@ -326,18 +340,30 @@ public class JFrameLesExcursions extends javax.swing.JFrame {
     private void jComboBoxExcursionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxExcursionsActionPerformed
         MiniExcursion excursionCourante = (MiniExcursion) modeleJComboExcursions.getSelectedItem();
         majAffichageEtapes(excursionCourante);
+        
     }//GEN-LAST:event_jComboBoxExcursionsActionPerformed
 
     private void jButtonCreationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreationActionPerformed
         // TODO add your handling code here:
+        JDialogAjouter jDialoCrseation = new JDialogAjouter(this,true);
+        jDialoCrseation.setVisible(true);
     }//GEN-LAST:event_jButtonCreationActionPerformed
 
     private void jButtonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSupprimerActionPerformed
 
+    /**
+     * Affiche les informations relatives à l'excursion affichée dans le tableau
+     * 
+     * @param evt 
+     */
     private void jButtonLectureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLectureActionPerformed
-        // TODO add your handling code here:
+        JDialogCRUD jDialogExcursion = new JDialogCRUD(this,true);
+        MiniExcursion excursionCourante = (MiniExcursion) modeleJComboExcursions.getSelectedItem();
+        jDialogExcursion.setExcursion(excursionCourante);
+        jDialogExcursion.setVisible(true);
+        
     }//GEN-LAST:event_jButtonLectureActionPerformed
 
 

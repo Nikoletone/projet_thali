@@ -238,7 +238,7 @@
     <Component class="javax.swing.JButton" name="jButtonCreation">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
+          <Color blue="ff" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Creation"/>
       </Properties>
@@ -249,7 +249,7 @@
     <Component class="javax.swing.JButton" name="jButtonSupprimer">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="ff" type="rgb"/>
+          <Color blue="ff" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Supprimer"/>
       </Properties>
@@ -260,7 +260,7 @@
     <Component class="javax.swing.JButton" name="jButtonModification">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="ff" type="rgb"/>
+          <Color blue="ff" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Modification"/>
       </Properties>
@@ -268,9 +268,9 @@
     <Component class="javax.swing.JButton" name="jButtonLecture">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="ff" type="rgb"/>
+          <Color blue="ff" green="99" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lecture"/>
+        <Property name="text" type="java.lang.String" value="Visualiser"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLectureActionPerformed"/>

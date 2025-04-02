@@ -22,6 +22,7 @@ public class MiniExcursion {
         this.lesEtapes = new ArrayList<>();
     }
 
+
     public void ajouterEtape(Etape nouvelleEtape) {
         lesEtapes.add(nouvelleEtape);
     } 
